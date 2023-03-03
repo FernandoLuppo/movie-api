@@ -14,7 +14,7 @@ const PORT = process.env.PORT
 const app = express()
 app.use(express.json())
 //  Mongoose
-mongoose.connect("mongodb://localhost/Movies")
+mongoose.connect("mongodb://127.0.0.1:27017/Movies")
 .then(() => console.log("Connected with Successful"))
 .catch(error => console.log("There was an error to try connect with server " + error))
 //  Cors
