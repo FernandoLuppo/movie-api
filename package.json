@@ -6,9 +6,7 @@
   "scripts": {
     "start:dev": "ts-node-dev src/server/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "production": "node/build/server/index.js",
-    "build": "npx tsc",
-    "start": "npm install && cd build && node index.js"
+    "start": "cd build && node index.js"
   },
   "author": "",
   "license": "ISC",
