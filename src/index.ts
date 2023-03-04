@@ -13,11 +13,17 @@ const PORT = process.env.PORT
 //  Express
 const app = express()
 app.use(express.json())
-//  Mongoose
+//  Mongoose and MongoDB
+const MONGODB_URL = process.env.MONGODB_URL
 mongoose.set("strictQuery", true)
-mongoose.connect("mongodb://0.0.0.0:27017/Movies")
-.then(() => console.log("Connected with Successful"))
-.catch(error => console.log("There was an error to try connect with server " + error))
+const connect = async () => {
+    if (MONGODB_URL) {
+        await mongoose.connect(MONGODB_URL)
+        .then(() => console.log("Connected with Successful"))
+        .catch(error => console.log("There was an error to try connect with server " + error))
+    }
+}
+connect()
 //  Cors
 app.use(cors())
 //  Routes
