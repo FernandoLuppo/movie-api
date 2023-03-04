@@ -10,11 +10,15 @@ const User = mongoose.model("Users")
 
 export const userController = {
     register: (req: Request, res: Response) => {
+
+        console.log("req.body do Register ", req.body)
+
         let encrypted = bcryptjs.genSaltSync(10)
         const { name, email, password }:IRegister = req.body
 
         User.findOne({ email: email })
         .then(user => {
+            console.log("Usuário ", user);
             if (user) res.status(400).send(["Usuário já registrado"])
             else {
                 const newUser = {
@@ -31,6 +35,8 @@ export const userController = {
     },
 
     login: (req: Request, res: Response) => {
+        console.log("req.body do Login ", req.body)
+
         const {password, email}:ILogin = req.body
 
         const userTeste = {
@@ -43,6 +49,7 @@ export const userController = {
         } else {
             User.findOne({ email: email })
             .then(user => {
+                console.log("User do Login ", user)
                 bcryptjs.compare(password, user.password, (error, key) => {
                     if (key === true) {
                         const { name, _id }:IBanc = user
