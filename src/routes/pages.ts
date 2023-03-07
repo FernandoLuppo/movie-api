@@ -21,14 +21,4 @@ router.put("/new-password", passwordMiddleware.newPassword, recoverPasswordContr
 //  Movies Routes
 router.get("/movies", tmdb.getMovies)
 
-//  Teste
-import { Request, Response } from "express"
-router.get("/user", (req: Request, res: Response) => {
-    const user = {
-        name: "Fernando",
-        age: 20
-    }
-    res.status(200).send(user)
-})
-
 export default router

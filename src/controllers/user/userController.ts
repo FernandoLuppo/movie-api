@@ -15,7 +15,6 @@ export const userController = {
 
         User.findOne({ email: email })
         .then(user => {
-            console.log("Usuário ", user);
             if (user) res.status(400).send(["Usuário já registrado"])
             else {
                 const newUser = {
@@ -44,7 +43,6 @@ export const userController = {
         } else {
             User.findOne({ email: email })
             .then(user => {
-                console.log("User do Login ", user)
                 bcryptjs.compare(password, user.password, (error, key) => {
                     if (key === true) {
                         const { name, _id }:IBanc = user
@@ -66,7 +64,7 @@ export const userController = {
             email: "testeFL@teste.com"
         }
 
-        if ( req.body.storageData === "123456789") {
+        if (req.body.storageData === "123456789") {
             res.status(200).send(userTeste)
         } else {
             await User.findOne({_id: _id})
@@ -78,7 +76,7 @@ export const userController = {
                 }
                 res.status(200).send(userData)
             })
-            .catch((error: string) => res.status(400).send(error))
+            .catch((error: string) => res.status(400).send("Este ID de usuário não existe - " + error))
         }
     },
 }

@@ -40,7 +40,7 @@ export const recoverPasswordController = {
             if (data !== null) res.status(200).send({message: "success"})
             else res.status(400).send({message: "failure"})
         })
-        .catch(error => res.status(400).send(error))
+        .catch(error => res.status(400).send("Este usuário não existe - " + error))
     },
 
     newPassword: async (req: Request, res: Response) => {

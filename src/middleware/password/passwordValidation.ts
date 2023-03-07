@@ -22,9 +22,6 @@ export const passwordMiddleware = {
     },
 
     newPassword: async (req: Request, res: Response, next: NextFunction) => {
-        console.log(req.body);
-        
-
         const newPasswordValidationSchema = yup.object().shape({
             password: yup.string().required("Campo Senha é obrigatório").min(3, "Campo Senha precisa ter no mínimo 3 caracteres")
         })
